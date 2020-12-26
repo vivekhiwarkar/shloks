@@ -4,6 +4,7 @@
 from flask import Flask, render_template
 from flask import request
 import pyrebase
+import DATABASE
 app = Flask(__name__)
 
 config = {
@@ -30,8 +31,9 @@ def upload_file():
 def success():  
     if request.method == 'POST':  
         f = request.files['file']  
-        f.save(f.filename)  
-        return render_template("success.html", name = f.filename)  
+        f.save(f.filename)
+        output = DATABASE.textRec(f.filename)
+        return render_template("success.html", name = f.filename,text = output )  
 
 if __name__ == '__main__':
   app.run(debug=True)
