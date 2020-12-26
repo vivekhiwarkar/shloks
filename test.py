@@ -33,7 +33,7 @@ def success():
         f = request.files['file']  
         f.save(f.filename)
         output = DATABASE.textRec(f.filename)
-        return render_template("success.html", name = f.filename,text = output )  
+        return render_template("success.html", name = f.filename,text = output)  
 
 if __name__ == '__main__':
   app.run(debug=True)
